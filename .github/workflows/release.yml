@@ -48,4 +48,4 @@ jobs:
       with:
         channel: '#dev'
         url: ${{ secrets.SLACK_WEBHOOK_URL }}
-        created_tag: 'weseek/nginx-nchan:${{ env.RELEASE_VERSION }}'
+        created_tag: 'v${{ env.RELEASE_VERSION }}'
