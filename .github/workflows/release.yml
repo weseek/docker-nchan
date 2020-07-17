@@ -40,7 +40,7 @@ jobs:
           --cache-to "type=local,dest=/tmp/.buildx-cache" \
           --platform linux/amd64 \
           --output "type=image,push=true" \
-          --tag weseek/docker-nchan:${{ env.RELEASE_VERSION }} \
+          --tag weseek/nginx-nchan:${{ env.RELEASE_VERSION }} \
           --file ./mainline/Dockerfile ./mainline
 
     - name: Slack Notification
@@ -48,4 +48,4 @@ jobs:
       with:
         channel: '#dev'
         url: ${{ secrets.SLACK_WEBHOOK_URL }}
-        created_tag: 'weseek/docker-nchan:${{ env.RELEASE_VERSION }}'
+        created_tag: 'weseek/nginx-nchan:${{ env.RELEASE_VERSION }}'
