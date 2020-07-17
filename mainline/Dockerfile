@@ -10,30 +10,30 @@ LABEL maintainer Yuki Takei <yuki@weseek.co.jp>
 ENV NGINX_VERSION 1.19.1
 ENV NGINX_PKG_RELEASE 1~buster
 ENV NCHAN_VERSION 1.2.7
-ENV MODULES_DIR /usr/local/nginx/modules
 
-RUN export DEBIAN_FRONTEND=noninteractive
+ENV MODULES_DIR /usr/local/nginx/modules
+ENV DEBIAN_FRONTEND noninteractive
+
+WORKDIR /usr/local/src
 
 RUN apt-get update
 RUN apt-get install --no-install-recommends --no-install-suggests -y gnupg1 ca-certificates wget
 RUN apt-get install -y dpkg-dev libpcre3-dev zlib1g-dev
 
+# retrieve nginx source
+RUN echo "deb-src https://nginx.org/packages/mainline/debian/ buster nginx" >> /etc/apt/sources.list.d/nginx.list
 RUN NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \
   KEY_SERVER=hkp://keyserver.ubuntu.com:80; \
   apt-key adv --keyserver "$KEY_SERVER" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY"
-
-RUN echo "deb-src https://nginx.org/packages/mainline/debian/ buster nginx" >> /etc/apt/sources.list.d/nginx.list
-
 RUN apt-get update
-
-WORKDIR /usr/local/src
 RUN apt-get source nginx=${NGINX_VERSION}-${NGINX_PKG_RELEASE}
 
+# retrieve nchan source
 RUN wget "https://github.com/slact/nchan/archive/v${NCHAN_VERSION}.tar.gz" -O nchan.tar.gz
 RUN tar zxf nchan.tar.gz
 
+# build nchan module
 WORKDIR /usr/local/src/nginx-${NGINX_VERSION}
-
 RUN ./configure --with-compat --add-dynamic-module=/usr/local/src/nchan-${NCHAN_VERSION}
 RUN make -f objs/Makefile objs/ngx_nchan_module.so
 
