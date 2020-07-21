@@ -41,6 +41,7 @@ jobs:
           --platform linux/amd64 \
           --output "type=image,push=true" \
           --tag weseek/nginx-nchan:${{ env.RELEASE_VERSION }} \
+          --tag weseek/nginx-nchan:latest \
           --file ./mainline/Dockerfile ./mainline
 
     - name: Slack Notification
