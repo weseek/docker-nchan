@@ -3,7 +3,7 @@
 
 # Supported tags and respective `Dockerfile` links
 
--	[`1.0.0`, `latest`](https://github.com/weseek/docker-nchan/blob/9d21fd952fdb4b7153bf79aa25ac4bf431777204/mainline/Dockerfile)
+-	[`1.0.1`, `latest`](https://github.com/weseek/docker-nchan/blob/9d21fd952fdb4b7153bf79aa25ac4bf431777204/mainline/Dockerfile)
 
 # How to use this image
 

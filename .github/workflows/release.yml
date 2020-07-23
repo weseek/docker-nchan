@@ -44,6 +44,14 @@ jobs:
           --tag weseek/nginx-nchan:latest \
           --file ./mainline/Dockerfile ./mainline
 
+    - name: Update Docker Hub Description
+      uses: peter-evans/dockerhub-description@v2.1.0
+      env:
+        DOCKERHUB_USERNAME: wsmoogle
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
+        DOCKERHUB_REPOSITORY: weseek/nginx-nchan
+        README_FILEPATH: ./README.md
+
     - name: Slack Notification
       uses: weseek/ghaction-release-slack-notification@master
       with:
