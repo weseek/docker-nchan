@@ -9,7 +9,7 @@ LABEL maintainer Yuki Takei <yuki@weseek.co.jp>
 
 ENV NGINX_VERSION 1.19.1
 ENV NGINX_PKG_RELEASE 1~buster
-ENV NCHAN_VERSION 1.2.7
+ENV NCHAN_VERSION 1.3.4
 
 ENV MODULES_DIR /usr/local/nginx/modules
 ENV DEBIAN_FRONTEND noninteractive
