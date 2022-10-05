@@ -34,7 +34,7 @@ RUN tar zxf nchan.tar.gz
 
 # build nchan module
 WORKDIR /usr/local/src/nginx-${NGINX_VERSION}
-RUN ./configure --with-compat --add-dynamic-module=/usr/local/src/nchan-${NCHAN_VERSION}
+RUN ./configure --with-debug --with-compat --add-dynamic-module=/usr/local/src/nchan-${NCHAN_VERSION}
 RUN make -f objs/Makefile objs/ngx_nchan_module.so
 
 RUN mkdir -p ${MODULES_DIR}
